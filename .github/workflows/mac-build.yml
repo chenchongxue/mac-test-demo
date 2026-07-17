@@ -1,0 +1,23 @@
+name: MacOS26 ARM64测试流水线
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  mac-job:
+    runs-on: macos-26-arm64
+    steps:
+      - name: 拉取项目代码
+        uses: actions/checkout@v4
+
+      - name: 查看macOS系统版本
+        run: sw_vers
+
+      - name: 安装工具jq、tree
+        run: brew install jq tree
+
+      - name: 输出版本验证
+        run: |
+          jq --version
+          tree --version
+          python3 --version
